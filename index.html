@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.3/spacelab/bootstrap.min.css" integrity="sha512-NWw8XgTx2tYA5oEZwBrmyH8bg37mh4bIjeV4OLWwqI3ipQ0ITyiWTFdG295uz2lMy+QO9DszNZwta4m4mJpnmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.5.1/knockout-latest.js" integrity="sha512-2AL/VEauKkZqQU9BHgnv48OhXcJPx9vdzxN1JrKDVc4FPU/MEE/BZ6d9l0mP7VmvLsjtYwqiYQpDskK9dG8KBA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <title>HLA</title>
 </head>
 <body>
@@ -13,5 +15,48 @@
           <a class="navbar-brand" href="#">HLA</a>
         </div>
       </nav>
+      <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <label class="form-label mt-4">Run ID</label>
+                    <input class="form-control" placeholder="Enter Run">
+                </div>
+            </div>
+            <div class="col-6">
+                <div>
+                    <label class="form-label mt-4">Performed by</label>
+                    <input class="form-control" placeholder="Enter Performing Tech">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div>
+                    <label class="form-label mt-4">Kit Lot#</label>
+                    <input class="form-control" placeholder="Enter Lot#">
+                </div>
+            </div>
+            <div class="col-6">
+                <div>
+                    <label class="form-label mt-4">Expiration Date</label>
+                    <input class="form-control" placeholder="Enter Expiration Date">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label class="form-label mt-4"> Enter number of Patients (1-40)</label>
+                <input class="form-control" type="number" min="0" max="40" data-bind="textInput: count">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div><strong>Wash Buffer:</strong><p data-bind="text: '300uL * (' + count() + ' * patients + 16 wells) * 6 washes = ' + 300*(count()*2 + 16)*6 + 'uL'"></p> </div>
+                <div><strong>Reccommend Using Approximately:</strong><p data-bind="text: Math.ceil(300*(count()*2 + 16)*6/10000)*10 + 'mL = ' + Math.ceil(300*(count()*2 + 16)*6/10000)*10/10 + 'mL of concentrate + ' + Math.ceil(300*(count()*2 + 16)*6/10000)*10/10*9 + 'mL of sterile water' "></p></div>
+            </div>
+        </div>
+      </div>
+      <script src="app.js"></script>
 </body>
 </html>
